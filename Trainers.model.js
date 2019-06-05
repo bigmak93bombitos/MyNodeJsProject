@@ -7,7 +7,7 @@ const createTrainer = sequelize => {
   Trainers.init({
     // attributes
     id: {
-      type: Sequelize.UUID,
+      type: Sequelize.INTEGER,
       primaryKey: true
     },
     firstname: {
@@ -39,6 +39,7 @@ const createTrainer = sequelize => {
     modelName: 'trainers'
     // options
   });
+
   return Trainers;
 }
 
@@ -98,20 +99,20 @@ const createTeam = sequelize => {
       type: Sequelize.STRING
       // allowNull defaults to true
     },
-    // trainer_id: {
-    //   type: Sequelize.INTEGER,
-    //   references: {
-    //     model: trainers,
-    //     key: 'id'
-    //   }
-    // },
-    trainer_id:
-    {
-      foreignKey: 'countryCode',
-      sourceKey: 'isoCode',
-      type: Sequelize.INTEGER
+    trainer_id: {
+      type: Sequelize.INTEGER,
+      references: {
+        model: trainers,
+        key: 'id'
+      }
+    },
+    // trainer_id:
+    // {
+      // foreignKey: 'countryCode',
+      // sourceKey: 'isoCode',
+      // type: Sequelize.INTEGER
           // allowNull defaults to true
-        },
+        // },
     createdAt: {
       type: Sequelize.DATE,
       allowNull: true
