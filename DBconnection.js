@@ -18,7 +18,7 @@ sequelize
     const { Trainer, Team,Player,Player_teams } = models;
 
     const trainer = await Trainer.create({
-      id:9, 
+      id:10, 
       firstname: 'TestTrener', lastname: 'TestTrenerLastName',age:20 })
 //     .then (created => created.get({
 //       plain: true

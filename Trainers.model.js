@@ -101,10 +101,10 @@ const createTeam = sequelize => {
     },
     trainer_id: {
       type: Sequelize.INTEGER,
-      references: {
-        model: trainers,
-        key: 'id'
-      }
+      // references: {
+      //   model: trainers,
+      //   key: 'id'
+      // }
     },
     // trainer_id:
     // {
