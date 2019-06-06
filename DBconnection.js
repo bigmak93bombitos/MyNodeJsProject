@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const { createModels } = require('./Trainers.model');
 // Option 1: Passing parameters separately
-const sequelize = new Sequelize('postgres', 'postgres', '1', {
+const sequelize = new Sequelize('testdb', 'postgres', '1', {
   host: 'localhost',
   dialect: 'postgres'
 });
