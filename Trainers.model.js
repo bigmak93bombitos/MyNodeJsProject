@@ -173,19 +173,37 @@ const createModels = async sequelize => {
  const Team = await createTeam(sequelize);
  const Player = await createPlayer(sequelize);
  const Player_teams = await createPlayer_teams(sequelize);
-// try {
- Trainer.hasMany(Team, {foreignKey: 'trainer_id', sourceKey: 'id'})
- Team.belongsToMany(Player, {through: Player_teams, foreignKey: 'team_id', sourceKey: 'id'})
- Player.belongsToMany(Team, {through: Player_teams, foreignKey: 'player_id', sourceKey: 'id'})
+try {
+ Trainer.hasMany(Team, 
+  {
+    foreignKey:'trainer_id', 
+    sourceKey: 'id'
+  })
+
+ Team.belongsToMany(Player, 
+  {
+    through: 
+    Player_teams, 
+    foreignKey: 'teams_id', 
+    sourceKey: 'id'
+  })
+
+ Player.belongsToMany(Team, 
+  {
+    through: Player_teams, 
+    foreignKey: 'player_id', 
+    sourceKey: 'id'
+  })
+
  return {
    Trainer,
    Team,
    Player,
    Player_teams,
  }
-// }catch(err){
-//   fatalLog(err)
-//  }
+}catch(err){
+  fatalLog(err)
+ }
 }
 
 module.exports = {createModels};
