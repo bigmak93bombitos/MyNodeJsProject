@@ -11,6 +11,8 @@ sequelize
     console.log('Connection has been established successfully.');
     return db;
   })
+
+  
   
   .then(db => createModels(sequelize))
 
