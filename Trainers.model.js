@@ -86,7 +86,8 @@ Player.init({
   },
 }, {
   sequelize,
-  modelName: 'player'
+  modelName: 'player',
+  freezeTableName: true,
   // options
 });
 return Player;
@@ -127,9 +128,10 @@ const createTeam = sequelize => {
       
     },
   }, {
+        // options
     sequelize,
-    modelName: 'team'
-    // options
+    modelName: 'team',
+    freezeTableName: true,
   });
   return Team;
 }
@@ -169,37 +171,37 @@ const createPlayer_teams = sequelize => {
 }
 
 const createModels = async sequelize => {
-//  const Trainer = await createTrainer(sequelize);
+ const Trainer = await createTrainer(sequelize);
  const Team = await createTeam(sequelize);
-//  const Player = await createPlayer(sequelize);
-//  const Player_teams = await createPlayer_teams(sequelize);
+ const Player = await createPlayer(sequelize);
+ const Player_teams = await createPlayer_teams(sequelize);
 // try {
-//  Trainer.hasMany(Team, 
-//   {
-//     foreignKey:'trainer_id', 
-//     sourceKey: 'id'
-//   })
+ Trainer.hasMany(Team, 
+  {
+    foreignKey:'trainer_id', 
+    sourceKey: 'id'
+  })
 
-//  Team.belongsToMany(Player, 
-//   {
-//     through: 
-//     Player_teams, 
-//     foreignKey: 'teams_id', 
-//     sourceKey: 'id'
-//   })
+ Team.belongsToMany(Player, 
+  {
+    through: 
+    Player_teams, 
+    foreignKey: 'teams_id', 
+    sourceKey: 'id'
+  })
 
-//  Player.belongsToMany(Team, 
-//   {
-//     through: Player_teams, 
-//     foreignKey: 'player_id', 
-//     sourceKey: 'id'
-//   })
+ Player.belongsToMany(Team, 
+  {
+    through: Player_teams, 
+    foreignKey: 'player_id', 
+    sourceKey: 'id'
+  })
 
  return {
-  //  Trainer,
+   Trainer,
    Team,
-  //  Player,
-  //  Player_teams,
+   Player,
+   Player_teams,
  }
 // }catch(err){
 //   fatalLog(err)
