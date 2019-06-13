@@ -175,7 +175,7 @@ const createModels = async sequelize => {
  const Team = await createTeam(sequelize);
  const Player = await createPlayer(sequelize);
  const Player_teams = await createPlayer_teams(sequelize);
-// try {
+
  Trainer.hasMany(Team, 
   {
     foreignKey:'trainer_id', 
@@ -203,9 +203,6 @@ const createModels = async sequelize => {
    Player,
    Player_teams,
  }
-// }catch(err){
-//   fatalLog(err)
-//  }
 }
 
 module.exports = {createModels};

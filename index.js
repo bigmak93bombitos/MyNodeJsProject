@@ -1,5 +1,8 @@
 const Sequelize = require('sequelize');
-const { createModels } = require('./all.models');
+const { createTrainer } = require('./trainers.model');
+const { createTeam } = require('./team.model');
+const { createPlayer } = require('./player.model');
+const { createPlayer_teams } = require('./player_teams.model');
 // Option 1: Passing parameters separately
 const sequelize = new Sequelize('testdb', 'postgres', '1', {
   host: 'localhost',
@@ -20,17 +23,33 @@ sequelize
     return db;
   })
 
-  
+  .then(async db => {
 
-  .then(db => createModels(sequelize))
+    const Trainer = await createTrainer(sequelize);
+    const Team = await createTeam(sequelize);
+    const Player = await createPlayer(sequelize);
+    const Player_teams = await createPlayer_teams(sequelize);
 
-  .then(async models => {
-    const {
-       Trainer, 
-       Team,
-       Player,
-       Player_teams
-      } = models;
+    Trainer.hasMany(Team, 
+        {
+          foreignKey:'trainer_id', 
+          sourceKey: 'id'
+        })
+      
+       Team.belongsToMany(Player, 
+        {
+          through: 
+          Player_teams, 
+          foreignKey: 'teams_id', 
+          sourceKey: 'id'
+        })
+      
+       Player.belongsToMany(Team, 
+        {
+          through: Player_teams, 
+          foreignKey: 'player_id', 
+          sourceKey: 'id'
+        })
     
     const trainer = await Trainer.create({
       firstname: 'TestTrener', 
@@ -42,7 +61,6 @@ sequelize
       name: 'TestTeam', 
       color: 'red',
       trainer_id:trainer.id
-      // trainer_id:1 
     })
 
     const player = await Player.create({
