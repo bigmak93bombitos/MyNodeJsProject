@@ -75,24 +75,76 @@
 //       teams_id:team.id 
 //     })
 // });
+// var Sequelize = require('sequelize');
 
-var Sequelize = require('sequelize');
-var sequelize = require('./config.db.js'); //sequelize instance
-const Trainer = require("./trainers.model")
-sequelize
-  .authenticate()
-  .then(db => {
-    console.log('Connection has been established successfully.');
-    return db;
-  })
-console.log (Trainer);
-// const createTrainer = new Trainer();
-    const Trainer = sequelize.create("trainers", {
-    createTrainer.create({
-    firstname: 'TestTrener', 
-    lastname: 'TestTrenerLastName',
-    age:20
-  })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const main = async () => {
+  const sequelize = require('./config.db.js'); 
+
+  const {Trainer} = require("./trainers.model")
+  console.log (Trainer);
+
+  const modelTrainer = await (new Trainer(sequelize));
+  console.log (modelTrainer);
+  modelTrainer.insertRow('TestTrener','TestTrenerLastName',20);
+}
+main();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // const createTrainer = new Trainer();
+//     // const Trainer = sequelize.create("trainers", {
+//     Trainer.create({
+//     firstname: 'TestTrener', 
+//     lastname: 'TestTrenerLastName',
+//     age:20
+//   })
   // .then(res=>{
   //   console.log(res);
   // }).catch(err=>console.log(err));

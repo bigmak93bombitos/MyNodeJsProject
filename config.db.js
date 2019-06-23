@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 const sequelize = new Sequelize('testdb', 'postgres', '1', {
   host: 'localhost',
   dialect: 'postgres',
-//   operatorsAliases: false,
+  operatorsAliases: false,
 
   pool: {
     max: 5,
@@ -12,10 +12,5 @@ const sequelize = new Sequelize('testdb', 'postgres', '1', {
   },
 });
 
-sequelize
-  .authenticate()
-  .then(db => {
-    console.log('Connection has been established successfully.');
-    return db;
-  })
+
 module.exports = sequelize;
