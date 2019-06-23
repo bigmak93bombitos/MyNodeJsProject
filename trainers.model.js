@@ -48,13 +48,13 @@
 
     // module.exports = {Trainer};
 
-const Model = require('sequelize').Model
+// const Model = require('sequelize').Model
 const Sequelize = require('sequelize');
 // var sequelize = require('./config.db.js'); //sequelize instance
 
-class Trainer extends Model {
+class Trainer  {
   constructor(connect) {
-    return connect.define("trainers", {
+    this.model = connect.define("trainers", {
         id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -86,7 +86,7 @@ class Trainer extends Model {
     });
   }
     insertRow(firstNameRow,lastNameRow,ageRow) {
-      this.create({
+      return this.model.create({
         firstname: firstNameRow, 
         lastname: lastNameRow,
         age:ageRow

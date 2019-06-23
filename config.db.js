@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 const sequelize = new Sequelize('testdb', 'postgres', '1', {
   host: 'localhost',
   dialect: 'postgres',
-  operatorsAliases: false,
+  // operatorsAliases: false,
 
   pool: {
     max: 5,

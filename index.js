@@ -99,17 +99,21 @@
 
 
 
-const main = async () => {
+// const main = async () => {
   const sequelize = require('./config.db.js'); 
 
   const {Trainer} = require("./trainers.model")
   console.log (Trainer);
 
-  const modelTrainer = await (new Trainer(sequelize));
+  // const modelTrainer = await (new Trainer(sequelize));
+  // console.log (modelTrainer);
+
+  const modelTrainer = new Trainer(sequelize);
   console.log (modelTrainer);
+
   modelTrainer.insertRow('TestTrener','TestTrenerLastName',20);
-}
-main();
+// }
+// main();
 
 
 
