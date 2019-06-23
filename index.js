@@ -79,10 +79,15 @@
 var Sequelize = require('sequelize');
 var sequelize = require('./config.db.js'); //sequelize instance
 const Trainer = require("./trainers.model")
-
+sequelize
+  .authenticate()
+  .then(db => {
+    console.log('Connection has been established successfully.');
+    return db;
+  })
 console.log (Trainer);
-const createTrainer = new Trainer();
-//     const Trainer = sequelize.create("trainers", {
+// const createTrainer = new Trainer();
+    const Trainer = sequelize.create("trainers", {
     createTrainer.create({
     firstname: 'TestTrener', 
     lastname: 'TestTrenerLastName',

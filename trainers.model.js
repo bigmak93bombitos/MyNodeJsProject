@@ -91,16 +91,16 @@ const Trainer = sequelize.define("trainers", {
   // modelName: "trainers"
 });
 
-// Trainer.create({
-//     firstname: 'TestTrener', 
-//     lastname: 'TestTrenerLastName',
-//     age:20
-// }).then(res=>{
-//   console.log(res);
-// }).catch(err=>console.log(err));
+Trainer.create({
+    firstname: 'TestTrener', 
+    lastname: 'TestTrenerLastName',
+    age:20
+}).then(res=>{
+  console.log(res);
+}).catch(err=>console.log(err));
 
 
 
-module.exports = {Trainer};
+// module.exports = {Trainer};
 //  exports.Trainer = Trainer;
  // module.exports.Trainer;
