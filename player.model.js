@@ -20,10 +20,6 @@ const Sequelize = require('sequelize');
       type: Sequelize.NUMBER
       // allowNull defaults to true
     }, 
-    lastname: {
-      type: Sequelize.STRING
-      // allowNull defaults to true
-    },
     createdAt: {
       type: Sequelize.DATE,
       allowNull: true
@@ -34,7 +30,10 @@ const Sequelize = require('sequelize');
     },
     deletedAt: {
       type: Sequelize.DATE,
-    }
+    },
+  },
+    {
+      freezeTableName: true
   });
 }
 insertRow(firstNameRow,lastNameRow,ageRow) {

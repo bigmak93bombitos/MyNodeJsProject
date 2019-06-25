@@ -8,22 +8,18 @@ const Sequelize = require('sequelize');
       primaryKey: true,
       autoIncrement: true,
     },
-    firstname: {
+    name: {
       type: Sequelize.STRING,
       allowNull: false
     },
-    lastname: {
+    color: {
       type: Sequelize.STRING
       // allowNull defaults to true
     },
-    age: {
-      type: Sequelize.NUMBER
+    trainer_id: {
+      type: Sequelize.INTEGER
       // allowNull defaults to true
     }, 
-    lastname: {
-      type: Sequelize.STRING
-      // allowNull defaults to true
-    },
     createdAt: {
       type: Sequelize.DATE,
       allowNull: true
@@ -34,7 +30,10 @@ const Sequelize = require('sequelize');
     },
     deletedAt: {
       type: Sequelize.DATE,
-    }
+    },
+  },
+    {
+      freezeTableName: true
   });
 }
 insertRow(teamName,teamColor,trainerId) {
