@@ -1,11 +1,8 @@
 const Sequelize = require('sequelize');
 
-const createPlayer = sequelize => {
-    const Model = Sequelize.Model;
-  
-  class Player extends Model {}
-  Player.init({
-      // attributes
+  class Player  {
+    constructor(connect) {
+      this.model = connect.define("player", {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
@@ -37,15 +34,16 @@ const createPlayer = sequelize => {
     },
     deletedAt: {
       type: Sequelize.DATE,
-      
-    },
-  }, {
-    sequelize,
-    modelName: 'player',
-    freezeTableName: true,
-    // options
+    }
   });
-  return Player;
+}
+insertRow(firstNameRow,lastNameRow,ageRow) {
+  return this.model.create({
+    firstname: firstNameRow, 
+    lastname: lastNameRow,
+    age:ageRow
+    })
   }
+}
 
-  module.exports = {createPlayer};
+  module.exports = {Player};

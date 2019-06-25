@@ -1,11 +1,8 @@
 const Sequelize = require('sequelize');
 
-const createPlayer_teams = sequelize => {
-    const Model = Sequelize.Model;
-  
-    class Player_teams extends Model {}
-    Player_teams.init({
-      // attributes
+    class PlayerTeams  {
+      constructor(connect) {
+        this.model = connect.define("player_teams", {
       player_id: {
         type: Sequelize.INTEGER
         // allowNull defaults to true
@@ -23,16 +20,16 @@ const createPlayer_teams = sequelize => {
         allowNull: true
       },
       deletedAt: {
-        type: Sequelize.DATE,
-        
-      },
-    }, {
-      sequelize,
-      modelName: 'player_teams'
-      // options
+        type: Sequelize.DATE,  
+      }
     });
-    return Player_teams;
   }
+  insertRow(playerId,teamId) {
+    return this.model.create({
+      player_id:playerId,
+      teams_id:teamId
+    })
+  }
+}
 
-
-  module.exports = {createPlayer_teams};
+module.exports = {PlayerTeams};
